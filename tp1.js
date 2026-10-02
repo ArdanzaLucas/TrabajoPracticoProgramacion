@@ -1,4 +1,3 @@
-
 // ===== PARTE 1: PATENTE =====
 function limpiarPatente(texto) {
   if (texto === null) {
@@ -17,16 +16,20 @@ while (!validarPatente(patente)) {
 }
 
 // ===== PARTE 2: VELOCIDAD =====
+function esVelocidadValida(texto) {
+  if (texto === null || texto.trim() === "") {
+    return false;
+  }
+  const velocidad = Number(texto);
+  return !isNaN(velocidad) && velocidad >= 0;
+}
+
 function pedirVelocidad() {
   let texto = prompt("Ingresá la velocidad (km/h):");
-  let velocidad = Number(texto);
-
-  while (texto === null || texto.trim() === "" || isNaN(velocidad) || velocidad < 0) {
+  while (!esVelocidadValida(texto)) {
     texto = prompt("Velocidad inválida. Ingresala de nuevo (km/h):");
-    velocidad = Number(texto);
   }
-
-  return velocidad;
+  return Number(texto);
 }
 
 const velocidad = pedirVelocidad();
